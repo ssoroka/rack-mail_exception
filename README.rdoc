@@ -7,12 +7,12 @@ but uses the mail gem instead of tmail.
 
     require 'rubygems'
 
-    use Rack::MailException, :to => "me@me.com"
+    use Rack::MailException, :to => "you@example.com", :from => 'server@example.com'
 
     # if you have a different settings from the default Mail settings
     # you need to configure it.
     # sample GMail SMTP config follows:
-    Mail.default do
+    Mail.defaults do
       delivery_method :smtp,
       :address: "smtp.gmail.com"
       :port: "587"
@@ -22,6 +22,10 @@ but uses the mail gem instead of tmail.
       :authentication: :plain
       :enable_starttls_auto: true
     end
+
+== Rails Example:
+
+    config.middleware.use Rack::MailException, :to => 'you@example.com', :from => 'server@example.com'
 
 == Note on Patches/Pull Requests
 
